@@ -4,14 +4,14 @@ package com.endava.service;
  * 4/18/2017
  */
 public enum  Text {
-    START_MENU("Hello choice one of \n" +
-            "1. ArrayIndexOutOfBoundsException \n" +
-            "2. FileNotFoundException \n" +
-            "3. ClassCastException \n" +
-            "4. Random Map exception \n" +
-            "5. Recurse Method \n" +
+    START_MENU("Hello select one of \n" +
+            "1. Generate ArrayIndexOutOfBoundsException \n" +
+            "2. Generate FileNotFoundException \n" +
+            "3. Generate ClassCastException \n" +
+            "4. Generate random exception from the HashMap \n" +
+            "5. Start Recursive Method, with random size \n" +
             "6. Exit \n"),
-    INDEX_INFO("Set length of array and then required position in it:"),
+    INDEX_INFO("Set length of array and then required position on it:"),
     FILE_INFO("Set file position, (correct dir: src/text.txt)"),
     CAST_INFO("Set in what to cast: \n" +
             "1. Integer \n" +

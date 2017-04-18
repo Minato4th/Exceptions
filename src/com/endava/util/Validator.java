@@ -29,7 +29,6 @@ public class Validator {
                 System.out.println(Text.WRONG_STRING.getText());
             }
         }
-
         return string;
     }
 
@@ -51,7 +50,6 @@ public class Validator {
                 this.string = numS;
             }
         }
-
         return Integer.parseInt(this.string);
     }
 }

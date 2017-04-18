@@ -45,7 +45,8 @@ public class Menu {
                 randomException();
                 i = 0;
             } else if (choice == Numbers.FIVE.getNumber()) {
-                System.out.println(recurseMethod(generateList(), 0));
+                System.out.println(recursiveMethod(generateList(), 0));
+                System.out.println(Text.DONE_INFO.getText());
                 i = 0;
             } else if (choice == Numbers.SIX.getNumber()) {
                 i = 5;
@@ -67,6 +68,11 @@ public class Menu {
             System.err.println(e.getMessage());
         }
 
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private void excFile() {
@@ -138,11 +144,11 @@ public class Menu {
         return list;
     }
 
-    private int recurseMethod(List list, int length){
+    private int recursiveMethod(List list, int length){
         assert length < 8 : "List is longer that 8";
         if (length < list.size()){
             length++;
-            length = recurseMethod(list, length);
+            length = recursiveMethod(list, length);
         }
         return length;
     }
