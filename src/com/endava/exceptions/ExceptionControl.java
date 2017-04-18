@@ -5,15 +5,12 @@ import java.io.IOException;
 
 public class ExceptionControl {
 
-    public int customArrayIndexOutOfBoundsException(int arrLong, int[] arr) throws ThreeExceptions {
-        int value = 0;
+    public int customArrayIndexOutOfBoundsException(int[] arr, int arrLong) throws ThreeExceptions {
         try {
-            value = arr[arrLong];
+            return arr[arrLong];
         } catch (ArrayIndexOutOfBoundsException e){
             throw new ThreeExceptions(e);
         }
-
-        return value;
     }
 
     public String customFileNotFoundException(String path) throws ThreeExceptions {
@@ -27,11 +24,10 @@ public class ExceptionControl {
         } catch (IOException e) {
             throw new ThreeExceptions(e);
         }
-
         return builder.toString();
     }
 
-    public void customcClassCastException(Object obj) throws ThreeExceptions {
+    public void customClassCastException(Object obj) throws ThreeExceptions {
         Object cast = obj;
         try {
             obj = (String)cast;

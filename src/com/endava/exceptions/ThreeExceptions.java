@@ -1,5 +1,7 @@
 package com.endava.exceptions;
 
+import com.endava.service.Text;
+
 import java.io.FileNotFoundException;
 
 public class ThreeExceptions extends Throwable{
@@ -12,27 +14,25 @@ public class ThreeExceptions extends Throwable{
         this.object=object;
     }
 
-    public void validateExcp(){
+    public void validateException(){
         if(object instanceof  ArrayIndexOutOfBoundsException){
-            System.err.println("Index Out of Bound, Please try again");
+            System.err.println(Text.ARRAY_EXCEPTION.getText());
         }else  if (object instanceof FileNotFoundException){
-            System.err.println("File not found try again");
+            System.err.println(Text.FILE_EXCEPTION.getText());
         }else if (object instanceof ClassCastException){
-            System.err.println("Unexpected Class");
+            System.err.println(Text.CLASS_EXCEPTION.getText());
         }
     }
 
     @Override
     public String getMessage() {
-        String mesage = "";
         if(object instanceof  ArrayIndexOutOfBoundsException){
-            mesage = "Array Error";
+            return  Text.ARRAY_ERROR.getText();
         }else  if (object instanceof FileNotFoundException){
-            mesage = "File Error";
+            return Text.FILE_ERROR.getText();
         }else if (object instanceof ClassCastException){
-            mesage = "Class Error";
+            return Text.CLASS_ERROR.getText();
         }
-
-        return mesage;
+        return Text.NO_ERROR.getText();
     }
 }

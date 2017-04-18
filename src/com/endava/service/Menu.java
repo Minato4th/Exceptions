@@ -10,11 +10,9 @@ public class Menu {
 
     private ExceptionControl except;
     private int choice;
-    private int length;
     private Validator validator;
     private Map<Integer, Throwable> map;
     private List<Integer> list;
-
 
     public Menu() {
         this.validator = new Validator();
@@ -31,81 +29,89 @@ public class Menu {
     public void mainMenu() {
 
         for (int i = 0; i < 3; i++) {
-            Text.start();
+            System.out.println(Text.START_MENU.getText());
             choice = validator.isDigit();
 
-            if (choice == Text.ONE) {
+            if (choice == Numbers.ONE.getNumber()) {
                 excIndex();
                 i = 0;
-            } else if (choice == Text.TWO) {
+            } else if (choice == Numbers.TWO.getNumber()) {
                 excFile();
                 i = 0;
-            } else if (choice == Text.THREE) {
+            } else if (choice == Numbers.THREE.getNumber()) {
                 exceptionsCast();
                 i = 0;
-            } else if (choice == Text.FOUR) {
+            } else if (choice == Numbers.FOUR.getNumber()) {
                 randomException();
                 i = 0;
-            } else if (choice == Text.FIVE) {
-                length = 0;
-                System.out.println(recurseMethod(generateList(), length));
+            } else if (choice == Numbers.FIVE.getNumber()) {
+                System.out.println(recurseMethod(generateList(), 0));
                 i = 0;
-            } else if (choice == Text.FIVE) {
+            } else if (choice == Numbers.SIX.getNumber()) {
                 i = 5;
+            } else if (choice > Numbers.SIX.getNumber()){
+                System.out.println(Text.WRONG_COMMAND.getText());
             }
-
         }
-
-        Text.end();
-
+        System.out.println(Text.END_PROGRAM.getText());
     }
 
     private void excIndex() {
-        Text.setIndex();
+        System.out.println(Text.INDEX_INFO.getText());
 
         try {
-            choice = except.customArrayIndexOutOfBoundsException(validator.isDigit(), new int[validator.isDigit()]);
-            Text.done();
+            choice = except.customArrayIndexOutOfBoundsException(new int[validator.isDigit()], validator.isDigit());
+            System.out.println(Text.DONE_INFO.getText());
         } catch (ThreeExceptions e) {
-            e.validateExcp();
+            e.validateException();
             System.err.println(e.getMessage());
         }
 
     }
 
     private void excFile() {
-        Text.setFile();
+        System.out.println(Text.FILE_INFO.getText());
         try {
             except.customFileNotFoundException(validator.isString());
-            Text.done();
+            System.out.println(Text.DONE_INFO.getText());
         } catch (ThreeExceptions e) {
-            e.validateExcp();
+            e.validateException();
             System.err.println(e.getMessage());
         }
 
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     private void exceptionsCast() {
-        Text.setCast();
+        System.out.println(Text.CAST_INFO.getText());
         Object obj = new Object();
 
         choice = validator.isDigit();
 
-        if (choice == Text.ONE) {
+        if (choice == Numbers.ONE.getNumber()) {
             obj = new Integer(5);
-        } else if (choice == Text.TWO) {
+        } else if (choice == Numbers.TWO.getNumber()) {
             obj = new String("Hello");
-        } else if (choice == Text.THREE) {
+        } else if (choice == Numbers.THREE.getNumber()) {
             obj = new Boolean(true);
         }
 
         try {
-
-            except.customcClassCastException(obj);
-            Text.done();
+            except.customClassCastException(obj);
+            System.out.println(Text.DONE_INFO.getText());
         } catch (ThreeExceptions e) {
-            e.validateExcp();
+            e.validateException();
             System.err.println(e.getMessage());
+        }
+
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
@@ -116,11 +122,10 @@ public class Menu {
             throw map.get(random.nextInt(4)+1);
         } catch (Throwable throwable) {
             throwable.printStackTrace();
-
         }
 
         try {
-            Thread.sleep(100);
+            Thread.sleep(500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -130,19 +135,15 @@ public class Menu {
         for (int i = 0; i < new Random().nextInt(15); i++) {
             list.add(i);
         }
-
         return list;
     }
 
     private int recurseMethod(List list, int length){
-
         assert length < 8 : "List is longer that 8";
         if (length < list.size()){
             length++;
             length = recurseMethod(list, length);
         }
-
         return length;
     }
-
 }

@@ -1,5 +1,7 @@
 package com.endava.util;
 
+import com.endava.service.Text;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,12 +21,12 @@ public class Validator {
             try {
                 this.string = reader.readLine();
                 if (string.length() == 0){
-                    System.out.println("Empty command");
+                    System.out.println(Text.EMPTY_COMMAND.getText());
                 } else {
                     i = 5;
                 }
             } catch (IOException e) {
-                System.out.println("Something go wrong, try again");
+                System.out.println(Text.WRONG_STRING.getText());
             }
         }
 
@@ -38,7 +40,7 @@ public class Validator {
             String numS = isString();
             for (int i = 0; i < numS.length(); i++) {
                 if (!Character.isDigit(numS.charAt(i))){
-                    System.out.println("Wrong number format, please try again");
+                    System.out.println(Text.WRONG_NUMBER.getText());
                     right = false;
                     break;
                 }
